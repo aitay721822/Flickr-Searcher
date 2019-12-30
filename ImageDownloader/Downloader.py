@@ -7,6 +7,7 @@ import requests
 Downloaded = "[圖片] %s 下載成功"
 DownloadError = '[圖片] %s 下載錯誤，已放棄下載'
 DownloadErrorRetry = "[圖片] %s 下載錯誤 (%d) ，重試中(%d)"
+DownloadOutTimeRetry = "[圖片] %s 下載超時，重試中(%d)"
 
 class Downloader:
     def __init__(self,urlQueue,download_dir,dir_name):
@@ -20,18 +21,22 @@ class Downloader:
             os.makedirs(storagePath)
         remaining_download_tries = 10
         while remaining_download_tries > 0:
-            response = requests.get(url)
-            if (response.status_code == 200):
-                print(Downloaded % (url))
-                imgPath = storagePath + "/" + url.split("/")[-1:][0]
-                with open(imgPath, 'wb') as f:
-                    f.write(response.content)
-                    f.flush()
-                break
-            else:
-                print(DownloadError % (url, response.status_code, remaining_download_tries))
+            try:
+                response = requests.get(url,timeout=30)
+                if (response.status_code == 200):
+                    print(Downloaded % (url))
+                    imgPath = storagePath + "/" + url.split("/")[-1:][0]
+                    with open(imgPath, 'wb') as f:
+                        f.write(response.content)
+                        f.flush()
+                        f.close()
+                    break
+                else:
+                    print(DownloadError % (url, response.status_code, remaining_download_tries))
+            except:
+                print(DownloadOutTimeRetry % (url,remaining_download_tries))
+            finally:
                 remaining_download_tries -= 1
-                continue
         if remaining_download_tries <= 0:
             print(DownloadErrorRetry % (url))
         time.sleep(2)
