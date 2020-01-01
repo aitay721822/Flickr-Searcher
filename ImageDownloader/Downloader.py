@@ -23,7 +23,7 @@ class Downloader:
         while remaining_download_tries > 0:
             try:
                 response = requests.get(url,timeout=30)
-                if (response.status_code == 200):
+                if (response and response.status_code == 200):
                     print(Downloaded % (url))
                     imgPath = storagePath + "/" + url.split("/")[-1:][0]
                     with open(imgPath, 'wb') as f:

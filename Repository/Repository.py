@@ -5,6 +5,9 @@ import requests
 from bs4 import BeautifulSoup
 from Repository import Settings
 
+PageLimit = "[程式]已經達到上限(%d/%d)"
+FailGet = "[程式]無法取得列表"
+InSearch = "[程式]正在搜尋中...(%d/%d)"
 
 class Repository():
 
@@ -16,26 +19,33 @@ class Repository():
         }
 
     def findUrl(self, url):
-        response = requests.get(url=url,headers=self.headers)
-        # beautiful Soup
-        soup = BeautifulSoup(response.text, "html.parser")
-        elements = soup.select("dl>dd>a[href]")
-        if len(elements) != 2:
+        try:
+            response = requests.get(url=url,headers=self.headers,timeout=30)
+            # beautiful Soup
+            soup = BeautifulSoup(response.text, "html.parser")
+            elements = soup.select("dl>dd>a[href]")
+            for e in elements:
+                href  = e['href']
+                if 'live.staticflickr.com' in href:
+                    return href
             return None
-        else:
-            return elements[1]['href']
+        except:
+            return None
 
 
     def search(self, searchText, page=1, **kwargs):
         response = self._search(text=searchText, page=page, **kwargs)
-        if Settings.photoPrefix in response:
+        if response and Settings.photoPrefix in response:
             details = response[Settings.photoPrefix]
             if 'pages' in details:
                 if page > details['pages']:
+                    print(PageLimit % (page,details['pages']))
                     return None
                 else:
+                    print(InSearch % (page,details['pages']))
                     return details['photo']
             else:
+                print(FailGet)
                 return None
 
     def _search(self,
@@ -64,5 +74,8 @@ class Repository():
             index += 1
 
         # prepare request
-        response = requests.get(url=Settings.baseApiUrl,params=params,headers=self.headers)
-        return json.loads(response.text)
+        try:
+            response = requests.get(url=Settings.baseApiUrl,params=params,headers=self.headers,timeout=30)
+            return json.loads(response.text)
+        except:
+            return None
