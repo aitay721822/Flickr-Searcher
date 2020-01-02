@@ -1,15 +1,14 @@
-# create by Airay
-
 import inspect
 import json
+import time
 
 import requests
 from bs4 import BeautifulSoup
 from Repository import Settings
 
-PageLimit = "[程式] 已經達到上限(%d/%d)"
-FailGet = "[程式] 無法取得列表"
-InSearch = "[程式] 正在搜尋中...(%d/%d)"
+PageLimit = "[程式]已經達到上限(%d/%d)"
+FailGet = "[程式]無法取得列表"
+InSearch = "[程式]正在搜尋中...(%d/%d)"
 
 class Repository():
 
@@ -50,8 +49,8 @@ class Repository():
                 print(FailGet)
                 return None
         else:
-            print(FailGet)
-            return None
+            time.sleep(5)
+            self.search(searchText,page)
 
     def _search(self,
                 text,

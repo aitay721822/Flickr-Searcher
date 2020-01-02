@@ -1,5 +1,3 @@
-#
-# DOWNLOAD DIRECTORY 
-#
+
 downloadDir = ".\Download"
 
