@@ -10,14 +10,14 @@ sizePrefix = "sizes/o"
 # Flickr Default Search Settings. 
 # DO NOT CHANGE THIS
 #
-defaultnojsonCallback =True
-defaultHerMasClient = True
-defaultHerMas = True
-defaultViewALL =True
+defaultnojsonCallback = 1
+defaultHerMasClient = 1
+defaultHerMas = 1
+defaultViewALL = 1
 defaultPerPage = 25
 defaultContentType = 7
 defaultSort = "relevance"
-defaultParseTag = True
+defaultParseTag = 1
 defaultExtras = "can_comment,count_comments,count_faves,description,isfavorite,license,media,needs_interstitial,owner_name,path_alias,realname,rotation,url_sq,url_q,url_t,url_s,url_n,url_w,url_m,url_z,url_c,url_l"
 defaultLang = "lang=zh-Hant-HK"
 SearchMethod = "flickr.photos.search"
