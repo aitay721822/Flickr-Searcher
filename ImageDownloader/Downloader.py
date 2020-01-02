@@ -8,7 +8,6 @@ Downloaded = "[圖片] %s 下載成功"
 DownloadError = '[圖片] %s 下載錯誤，已放棄下載'
 DownloadErrorRetry = "[圖片] %s 下載錯誤 (%d) ，重試中(%d)"
 DownloadOutTimeRetry = "[圖片] %s 下載超時，重試中(%d)"
-hasBeenDownloaded = "[圖片] %s 下載過了"
 
 class Downloader:
 
@@ -43,8 +42,6 @@ class Downloader:
                 remaining_download_tries -= 1
         if remaining_download_tries <= 0:
             print(DownloadErrorRetry % (url))
-        else:
-            print(hasBeenDownloaded % (url))
         time.sleep(1)
         return isDownloaded
 
