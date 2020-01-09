@@ -42,6 +42,7 @@ class Downloader:
                     print(DownloadOutTimeRetry % (url, remaining_download_tries))
                 finally:
                     remaining_download_tries -= 1
+                    time.sleep(1)
             if remaining_download_tries <= 0:
                 print(DownloadError % url)
         finally:
