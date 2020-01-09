@@ -14,7 +14,7 @@ defaultnojsonCallback = 1
 defaultHerMasClient = 1
 defaultHerMas = 1
 defaultViewALL = 1
-defaultPerPage = 25
+defaultPerPage = 100
 defaultContentType = 7
 defaultSort = "relevance"
 defaultParseTag = 1
@@ -26,9 +26,16 @@ defaultFormat = "json"
 #
 # API_KEY : Use it to access Flickr site
 #
-api_key = "-- insert your api key here -- "
+api_key = "11481d12188aab278f01b6041b3d07e3"
 
 #
 # DO NOT CHANGE THIS
 #
 resolution = ['url_l','url_c','url_z','url_m','url_w','url_n','url_s','url_t','url_q','url_sq']
+
+
+#
+# When Request cannot get Response
+# Let thread sleep and run again
+#
+sleep_time = 2
