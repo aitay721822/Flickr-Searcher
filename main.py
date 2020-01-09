@@ -5,6 +5,7 @@ from Repository.Repository import Repository
 
 if __name__ == '__main__':
     repo = Repository()
+    
     query = input("請輸入想要尋找的東西: ")
     page = int(input("請輸入想要開始的頁數: "))
     maxPage = int(input("請輸入想要下載的頁數(每頁%d張): " % (Settings.defaultPerPage)))
@@ -38,7 +39,7 @@ if __name__ == '__main__':
                             break
             Handler = Downloader(queue, Common.Data.downloadDir, str(query))
             downloaded += Handler.download()
-            print("[程式] 第 %d 頁共下載了 (%d/%d)" % (page,downloaded,maxPage*Settings.defaultPerPage))
+            print("[程式] 第 %d 頁共下載了 (%d/%d)" % (page,downloaded,maxPage * Settings.defaultPerPage))
         except Exception as e:
             print("[程式] 第 %d 頁下載失敗，錯誤訊息為：%s" % (page,str(e)))
         finally:
