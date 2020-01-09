@@ -8,8 +8,6 @@ Home Work - 爬蟲
 `pipenv install requests` or `pip install requests`
 ### BeautifulSoup
 `pip install BeautifulSoup4`
-### Json
-`pip install json`
 
 ## 下載連結
 [Source Code](https://github.com/aitay721822/python_flickr/archive/master.zip)  
