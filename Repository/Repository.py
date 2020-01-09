@@ -53,6 +53,7 @@ class Repository():
             time.sleep(Settings.sleep_time)
             Retry -= 1
             self.search(searchText, page, Retry)
+        return None
 
     def _search(self,
                 text,
