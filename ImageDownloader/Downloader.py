@@ -37,13 +37,13 @@ class Downloader:
                         isDownloaded = True
                         break
                     else:
-                        print(DownloadError % (url, response.status_code, remaining_download_tries))
+                        print(DownloadErrorRetry % (url, response.status_code, remaining_download_tries))
                 except:
                     print(DownloadOutTimeRetry % (url, remaining_download_tries))
                 finally:
                     remaining_download_tries -= 1
             if remaining_download_tries <= 0:
-                print(DownloadErrorRetry % url)
+                print(DownloadError % url)
         finally:
             return isDownloaded
 
