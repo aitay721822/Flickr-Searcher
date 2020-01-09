@@ -41,13 +41,11 @@ class Repository():
             if 'pages' in details:
                 if page > details['pages']:
                     print(PageLimit % (page, details['pages']))
-                    return None
                 else:
                     print(InSearch % (page, details['pages']))
                     return details['photo']
             else:
                 print(FailGet)
-                return None
         elif Retry > 0:
             print(RetrySearch % (Retry))
             time.sleep(Settings.sleep_time)
