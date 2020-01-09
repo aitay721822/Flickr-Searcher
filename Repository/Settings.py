@@ -26,7 +26,7 @@ defaultFormat = "json"
 #
 # API_KEY : Use it to access Flickr site
 #
-api_key = "-- insert your api_key here --"
+api_key = "11481d12188aab278f01b6041b3d07e3"
 
 #
 # DO NOT CHANGE THIS

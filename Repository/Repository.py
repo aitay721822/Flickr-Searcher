@@ -9,7 +9,7 @@ from Repository import Settings
 PageLimit = "[程式]已經達到上限(%d/%d)"
 FailGet = "[程式]無法取得列表"
 InSearch = "[程式]正在搜尋中...(%d/%d)"
-RetrySearch = "[程式]無法處理搜尋回應，重試中。(%d/%d)"
+RetrySearch = "[程式]無法處理搜尋回應，重試中。(%d)"
 
 class Repository():
 
@@ -24,7 +24,7 @@ class Repository():
         try:
             response = requests.get(url=url, headers=self.headers, timeout=30)
             # beautiful Soup
-            soup = BeautifulSoup(response.text, "html.parser")
+            soup = BeautifulSoup(response.text, "lxml")
             elements = soup.select("dl>dd>a[href]")
             for e in elements:
                 href = e['href']
