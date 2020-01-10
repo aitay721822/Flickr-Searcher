@@ -93,3 +93,5 @@ class Repository():
         endIndex = text.rfind('}')
         if startIndex != -1 and endIndex != -1:
             return text[startIndex:endIndex + 1]
+        else:
+            return text
