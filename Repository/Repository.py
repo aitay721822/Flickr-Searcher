@@ -81,6 +81,15 @@ class Repository():
         # prepare request
         try:
             response = requests.get(url=Settings.baseApiUrl, params=params, headers=self.headers, timeout=30)
-            return json.loads(response.text)
+            r = self.trimResponse(response.text)
+            return json.loads(r)
         except:
             return None
+
+    def trimResponse(self,text):
+        if not text and len(text) == 0:
+            return text
+        startIndex = text.find('{')
+        endIndex = text.rfind('}')
+        if startIndex != -1 and endIndex != -1:
+            return text[startIndex:endIndex + 1]
